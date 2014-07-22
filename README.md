@@ -24,3 +24,83 @@ FROM
 
 
 select NAME, AVG(SCORE.MARKS) as AVGG from PERSON JOIN SCORE on SCORE.PERSONID=PERSON.ID Having AVG(SCORE.MARKS)>12 group by PERSON.Name
+
+
+--------------------------------------------------------
+--  File created - Wednesday-July-23-2014   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table SHOWROOM
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."SHOWROOM" 
+   (	"CARDID" VARCHAR2(20 BYTE), 
+	"PRIZE" VARCHAR2(20 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Ref Constraints for Table SHOWROOM
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."SHOWROOM" ADD CONSTRAINT "SHOWROOM_FK1" FOREIGN KEY ("CARDID")
+	  REFERENCES "SYSTEM"."CAR" ("ID") ENABLE;
+
+
+
+
+
+
+
+--------------------------------------------------------
+--  File created - Wednesday-July-23-2014   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table CAR
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."CAR" 
+   (	"ID" VARCHAR2(20 BYTE), 
+	"NAME" VARCHAR2(20 BYTE), 
+	"MAKECODE" VARCHAR2(20 BYTE), 
+	"MODELCODE" VARCHAR2(20 BYTE), 
+	"PARENTCARID" VARCHAR2(20 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index CAR_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SYSTEM"."CAR_PK" ON "SYSTEM"."CAR" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table CAR
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."CAR" ADD CONSTRAINT "CAR_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "SYSTEM"."CAR" MODIFY ("MAKECODE" NOT NULL ENABLE);
+  ALTER TABLE "SYSTEM"."CAR" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "SYSTEM"."CAR" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Ref Constraints for Table CAR
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."CAR" ADD CONSTRAINT "CAR_FK1" FOREIGN KEY ("ID")
+	  REFERENCES "SYSTEM"."CAR" ("ID") ENABLE;
+
+
+
+
+
+
+
